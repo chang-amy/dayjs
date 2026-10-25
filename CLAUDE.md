@@ -21,7 +21,7 @@ npm test                                      # full suite: reruns timezone test
 npm run build                                 # rollup -> dayjs.min.js, locale/, plugin/ in repo root; ends with size-limit (2.99 KB)
 npm run babel                                 # ESM build into esm/
 ```
-On a clean checkout `npm test` already fails in `test/plugin/dayOfYear`, `localizedFormat` and, under bare `jest`, `timezone` (needs `TZ`). Check with `git stash` before blaming your change.
+Known failures on a clean `dev` checkout (6 tests, 3 suites; don't try to fix them, and don't use them as a signal): `dayOfYear` "DayOfYear set", `localizedFormat` "Should not interpolate characters inside square brackets", and four `plugin/timezone` DST cases (2012-03-11 / 2012-11-04) that fail only in `npm test`'s final jest run under the machine's own TZ. The same file passes with `TZ=America/New_York`. Any other failure is yours.
 
 ## Conventions
 - Style: airbnb-base, **no semicolons**, **no trailing commas**, 2-space indent. Run lint; don't hand-fix style.
